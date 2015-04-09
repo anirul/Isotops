@@ -99,8 +99,16 @@ TArray<FDecayMode> BranchDecay(uint32 protons, uint32 neutrons, const Branch* br
 }
 
 TArray<FDecayMode> UnknownDecay(uint32 protons, uint32 neutrons, float random) {
-	// TODO: compute unknown decay
-	return TArray<FDecayMode>();
+	// TODO: better heuristic
+	auto decay_mode = FDecayMode {
+		EDecayType::Nucleon,
+		protons >= neutrons ? 1u : 0,
+		neutrons >= protons ? 1u : 0,
+	};
+	
+	TArray<FDecayMode> result;
+	result.Add(decay_mode);
+	return result;
 }
 
 TArray<FDecayMode> UNucleusModel::Decay(uint32 Protons, uint32 Neutrons, float Random) {
@@ -116,11 +124,7 @@ TArray<FDecayMode> UNucleusModel::Decay(uint32 Protons, uint32 Neutrons, float R
 		return UnknownDecay(Random, Protons, Neutrons);
 	}
 	
-	if (std::isinf(isotope->half_life)) {
-		// stable isotope: should not happen
-		// TODO: emit a warning
-		return TArray<FDecayMode>();
-	}
+	assert(!std::isinf(isotope->half_life));
 
 	float interval_high = 1.0;
 	for (auto branch = isotope->branches_begin; branch != isotope->branches_end; ++branch) {
