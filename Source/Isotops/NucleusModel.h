@@ -45,9 +45,9 @@ class ISOTOPS_API UNucleusModel : public UBlueprintFunctionLibrary {
 	GENERATED_BODY()
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category=NucleusModel)
-	static FNucleon Create(float Random, uint32 Protons, uint32 Neutrons);
+	static FNucleon Create(uint32 Protons, uint32 Neutrons, float Random);
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category=NucleusModel)
-	static TArray<FDecayMode> Decay(float Random, uint32 Protons, uint32 Neutrons);
+	static TArray<FDecayMode> Decay(uint32 Protons, uint32 Neutrons, float Random);
 	
 };
