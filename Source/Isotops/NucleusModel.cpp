@@ -71,9 +71,7 @@ FNucleon UNucleusModel::Create(uint32 Protons, uint32 Neutrons, float Random) {
 	}
 	
 	auto half_life = isotope->half_life;
-
-	// TODO: compute life
-	auto life = half_life * 2;
+	auto life = half_life * -log2(Random);
 	
 	return FNucleon { element->name, half_life, life };
 }
