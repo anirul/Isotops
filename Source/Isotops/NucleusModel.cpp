@@ -57,7 +57,7 @@ const Isotope* getIsotope(const Element* element, size_t neutrons) {
 	return isotope;
 }
 
-FNucleon UNucleusModel::Create(uint32 Protons, uint32 Neutrons, float Random) {
+FNucleon UNucleusModel::Create(int32 Protons, int32 Neutrons, float Random) {
 	auto element = getElement(Protons);
 	if (element == nullptr) {
 		// unknown element
@@ -76,7 +76,7 @@ FNucleon UNucleusModel::Create(uint32 Protons, uint32 Neutrons, float Random) {
 	return FNucleon { element->name, half_life, life };
 }
 
-TArray<FDecayMode> BranchDecay(uint32 protons, uint32 neutrons, const Branch* branch, float random) {
+TArray<FDecayMode> BranchDecay(int32 protons, int32 neutrons, const Branch* branch, float random) {
 	auto decays_begin = branch->decays_begin;
 	auto decays_end = branch->decays_end;
 
@@ -98,12 +98,12 @@ TArray<FDecayMode> BranchDecay(uint32 protons, uint32 neutrons, const Branch* br
 	return result;
 }
 
-TArray<FDecayMode> UnknownDecay(uint32 protons, uint32 neutrons, float random) {
+TArray<FDecayMode> UnknownDecay(int32 protons, int32 neutrons, float random) {
 	// TODO: better heuristic
 	auto decay_mode = FDecayMode {
 		EDecayType::Nucleon,
-		protons >= neutrons ? 1u : 0,
-		neutrons >= protons ? 1u : 0,
+		protons >= neutrons ? 1 : 0,
+		neutrons >= protons ? 1 : 0,
 	};
 	
 	TArray<FDecayMode> result;
@@ -111,7 +111,7 @@ TArray<FDecayMode> UnknownDecay(uint32 protons, uint32 neutrons, float random) {
 	return result;
 }
 
-TArray<FDecayMode> UNucleusModel::Decay(uint32 Protons, uint32 Neutrons, float Random) {
+TArray<FDecayMode> UNucleusModel::Decay(int32 Protons, int32 Neutrons, float Random) {
 	auto element = getElement(Protons);
 	if (element == nullptr) {
 		// unknown element

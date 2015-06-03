@@ -34,10 +34,10 @@ struct FDecayMode {
 	EDecayType Type;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	uint32 Protons;
+	int32 Protons;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	uint32 Neutrons;
+	int32 Neutrons;
 };
 
 UCLASS()
@@ -45,9 +45,9 @@ class ISOTOPS_API UNucleusModel : public UBlueprintFunctionLibrary {
 	GENERATED_BODY()
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category=NucleusModel)
-	static FNucleon Create(uint32 Protons, uint32 Neutrons, float Random);
+	static FNucleon Create(int32 Protons, int32 Neutrons, float Random);
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category=NucleusModel)
-	static TArray<FDecayMode> Decay(uint32 Protons, uint32 Neutrons, float Random);
+	static TArray<FDecayMode> Decay(int32 Protons, int32 Neutrons, float Random);
 	
 };
