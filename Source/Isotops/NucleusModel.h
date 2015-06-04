@@ -44,6 +44,8 @@ UCLASS()
 class ISOTOPS_API UNucleusModel : public UBlueprintFunctionLibrary {
 	GENERATED_BODY()
 	
+public:
+	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category=NucleusModel)
 	static FNucleon Create(int32 Protons, int32 Neutrons, float Random);
 	
