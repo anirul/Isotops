@@ -42,7 +42,7 @@ const Isotope* getIsotope(const Element* element, size_t neutrons) {
 //	}
 	assert(element != nullptr);
 	
-	auto isotope_index = neutrons - element->min_neutrons;
+	int isotope_index = neutrons - element->min_neutrons;
 	if (isotope_index < 0) {
 		// not enough neutrons
 		return nullptr;
@@ -70,8 +70,8 @@ FNucleon UNucleusModel::Create(int32 Protons, int32 Neutrons, float Random) {
 		return FNucleon { element->name, 0.0 };
 	}
 	
-	auto half_life = isotope->half_life;
-	auto life = half_life * -log2(Random);
+	float half_life = isotope->half_life;
+	float life = half_life * -log2(Random);
 	
 	return FNucleon { element->name, half_life, life };
 }

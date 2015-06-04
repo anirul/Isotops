@@ -11,10 +11,10 @@ struct FNucleon {
 	FString Element;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	double HalfLife;
+	float HalfLife;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	double Life;
+	float Life;
 };
 
 UENUM(BlueprintType)
