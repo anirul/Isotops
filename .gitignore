@@ -3,3 +3,9 @@ Intermediate
 Saved
 Build
 MacNoEditor
+*.suo
+Isotops.sln
+*.sdf
+Binaries/Win64/UE4Editor-Isotops-Win64-DebugGame.dll
+*.pdb
+Isotops.opensdf
