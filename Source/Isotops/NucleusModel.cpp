@@ -99,6 +99,10 @@ TArray<FDecayMode> BranchDecay(int32 protons, int32 neutrons, const Branch* bran
 }
 
 TArray<FDecayMode> UnknownDecay(int32 protons, int32 neutrons, float random) {
+	TArray<FDecayMode> result;
+	if ((protons == 0) && (neutrons == 0)) {
+		return result;
+	}
 	// TODO: better heuristic
 	auto decay_mode = FDecayMode {
 		EDecayType::Nucleon,
@@ -106,7 +110,6 @@ TArray<FDecayMode> UnknownDecay(int32 protons, int32 neutrons, float random) {
 		neutrons >= protons ? 1 : 0,
 	};
 	
-	TArray<FDecayMode> result;
 	result.Add(decay_mode);
 	return result;
 }
@@ -115,13 +118,13 @@ TArray<FDecayMode> UNucleusModel::Decay(int32 Protons, int32 Neutrons, float Ran
 	auto element = getElement(Protons);
 	if (element == nullptr) {
 		// unknown element
-		return UnknownDecay(Random, Protons, Neutrons);
+		return UnknownDecay(Protons, Neutrons, Random);
 	}
 	
 	auto isotope = getIsotope(element, Neutrons);
 	if (isotope == nullptr) {
 		// unknown isotope
-		return UnknownDecay(Random, Protons, Neutrons);
+		return UnknownDecay(Protons, Neutrons, Random);
 	}
 	
 	assert(!std::isinf(isotope->half_life));
