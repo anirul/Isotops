@@ -3,6 +3,7 @@
 
 #include <cassert>
 #include <cmath>
+#include <limits>
 
 struct Branch {
 	float probability;
@@ -61,7 +62,10 @@ FNucleon UNucleusModel::Create(int32 Protons, int32 Neutrons, float Random) {
 	auto element = getElement(Protons);
 	if (element == nullptr) {
 		// unknown element
-		return FNucleon { FString::FormatAsNumber(Protons), 0.0 };
+		return FNucleon {
+			FString::FormatAsNumber(Protons),
+			std::numeric_limits<float>::min()
+		};
 	}
 	
 	auto isotope = getIsotope(element, Neutrons);
@@ -103,11 +107,15 @@ TArray<FDecayMode> UnknownDecay(int32 protons, int32 neutrons, float random) {
 	if ((protons == 0) && (neutrons == 0)) {
 		return result;
 	}
-	// TODO: better heuristic
+	// remove some surplus particules
 	auto decay_mode = FDecayMode {
 		EDecayType::Nucleon,
-		protons >= neutrons ? 1 : 0,
-		neutrons >= protons ? 1 : 0,
+		protons >= neutrons ?
+			(int32)ceil((float)(protons - neutrons) / 2.0f) :
+			0,
+		neutrons >= protons ?
+			(int32)ceil((float)(neutrons - protons) / 2.0f) :
+			0,
 	};
 	
 	result.Add(decay_mode);

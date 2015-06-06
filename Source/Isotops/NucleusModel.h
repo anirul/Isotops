@@ -43,7 +43,6 @@ struct FDecayMode {
 UCLASS()
 class ISOTOPS_API UNucleusModel : public UBlueprintFunctionLibrary {
 	GENERATED_BODY()
-	
 public:
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category=NucleusModel)
