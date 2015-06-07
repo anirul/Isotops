@@ -59,19 +59,11 @@ const Isotope* getIsotope(const Element* element, size_t neutrons) {
 }
 
 FNucleon UNucleusModel::Create(int32 Protons, int32 Neutrons, float Random) {
-	if ((Neutrons == 0) &&  (Protons == 0)) {
-		return FNucleon {
-			"Null",
-			std::numeric_limits<float>::infinity(),
-			std::numeric_limits<float>::infinity()
-		};
-	}
 	auto element = getElement(Protons);
 	if (element == nullptr) {
 		// unknown element
 		return FNucleon {
 			FString::FormatAsNumber(Protons),
-			std::numeric_limits<float>::min(),
 			std::numeric_limits<float>::min()
 		};
 	}
@@ -79,11 +71,7 @@ FNucleon UNucleusModel::Create(int32 Protons, int32 Neutrons, float Random) {
 	auto isotope = getIsotope(element, Neutrons);
 	if (isotope == nullptr) {
 		// unknown isotope
-		return FNucleon {
-			element->name,
-			std::numeric_limits<float>::min(),
-			std::numeric_limits<float>::min()
-		};
+		return FNucleon { element->name, 0.0 };
 	}
 	
 	float half_life = isotope->half_life;
