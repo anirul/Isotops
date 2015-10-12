@@ -17,4 +17,4 @@ Example:
         3               1               4
 ```
 
-This would remove a tritium from your collection and add an Helium.
+This would remove a tritium from your collection and add an Helium. Later ideas could be to add data from the wikipedia page corresponding to the element.
