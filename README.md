@@ -12,9 +12,9 @@ The idea is to be able to create various nuclei by just pushing neutrons/protons
 ```ascii
 Example:
 
-	1		0		2		 -
-	  H     +  	  n	=	  He	+ 	e
-	3		1		4
+        1               0               2                 -
+          H     +         n        =      He       +    e
+        3               1               4
 ```
 
 This would remove a tritium from your collection and add an Helium.
