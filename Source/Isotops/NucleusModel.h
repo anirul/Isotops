@@ -8,7 +8,16 @@ struct FNucleon {
 	GENERATED_USTRUCT_BODY()
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString Symbol;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString Element;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString Description;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString Symbol;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float HalfLife;

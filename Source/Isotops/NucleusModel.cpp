@@ -18,7 +18,9 @@ struct Isotope {
 };
 
 struct Element {
+	FString symbol;
 	FString name;
+	FString description;
 	size_t min_neutrons;
 	const Isotope* isotopes_begin;
 	const Isotope* isotopes_end;
@@ -62,6 +64,8 @@ FNucleon UNucleusModel::Create(int32 Protons, int32 Neutrons, float Random) {
 	if ((Neutrons == 0) &&  (Protons == 0)) {
 		return FNucleon {
 			"Null",
+			"",
+			"",
 			std::numeric_limits<float>::infinity(),
 			std::numeric_limits<float>::infinity()
 		};
@@ -71,6 +75,8 @@ FNucleon UNucleusModel::Create(int32 Protons, int32 Neutrons, float Random) {
 		// unknown element
 		return FNucleon {
 			FString::FormatAsNumber(Protons),
+			"",
+			"",
 			std::numeric_limits<float>::min(),
 			std::numeric_limits<float>::min()
 		};
@@ -80,7 +86,9 @@ FNucleon UNucleusModel::Create(int32 Protons, int32 Neutrons, float Random) {
 	if (isotope == nullptr) {
 		// unknown isotope
 		return FNucleon {
+			element->symbol,
 			element->name,
+			element->description,
 			std::numeric_limits<float>::min(),
 			std::numeric_limits<float>::min()
 		};
@@ -89,7 +97,13 @@ FNucleon UNucleusModel::Create(int32 Protons, int32 Neutrons, float Random) {
 	float half_life = isotope->half_life;
 	float life = half_life * -log2(Random);
 	
-	return FNucleon { element->name, half_life, life };
+	return FNucleon {
+		element->symbol,
+		element->name,
+		element->description,
+		half_life,
+		life
+	};
 }
 
 TArray<FDecayMode> BranchDecay(int32 protons, int32 neutrons, const Branch* branch, float random) {
