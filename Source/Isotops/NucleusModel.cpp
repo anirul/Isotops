@@ -1,5 +1,5 @@
-#include "Isotops.h"
 #include "NucleusModel.h"
+#include "Isotops.h"
 
 #include <cassert>
 #include <cmath>
