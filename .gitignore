@@ -62,7 +62,7 @@ Intermediate/*
 # Cache files for the editor to use
 DerivedDataCache/*
 
-# Max specific deletes
+# Mac specific deletes
 .DS_Stores
 *.xworkspace
 MacNoEditor/*
