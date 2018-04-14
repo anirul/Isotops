@@ -1,3 +1,4 @@
+#pragma warning(disable: 4883)
 const FDecayMode decays[] = {
 	FDecayMode { EDecayType::Bminus, 0, 0 },
 	FDecayMode { EDecayType::Bminus, 0, 0 },
