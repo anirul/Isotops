@@ -9,8 +9,5 @@
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
 		}
-	],
-	"TargetPlatforms": [
-		"MacNoEditor"
 	]
 }

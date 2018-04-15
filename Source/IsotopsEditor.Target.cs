@@ -8,6 +8,7 @@ public class IsotopsEditorTarget : TargetRules
 	public IsotopsEditorTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Editor;
-		ExtraModuleNames.Add("Isotops");
+		
+		ExtraModuleNames.AddRange( new string[] { "Isotops" } );
 	}
 }

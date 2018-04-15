@@ -68,3 +68,6 @@ DerivedDataCache/*
 MacNoEditor/*
 *.xcworkspacedata
 *.xcsettings
+*.xcuserstate
+*.xcuserstate
+.DS_Store

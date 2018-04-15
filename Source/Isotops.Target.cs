@@ -8,5 +8,7 @@ public class IsotopsTarget : TargetRules
 	public IsotopsTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Game;
+
+		ExtraModuleNames.AddRange( new string[] { "Isotops" } );
 	}
 }
